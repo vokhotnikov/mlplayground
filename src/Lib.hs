@@ -1,5 +1,7 @@
 module Lib
-    ( trainLinear
+    ( TrainedAlgorithm
+    , LinearRegression
+    , trainLinear
     , mainLoop
     ) where
 
@@ -12,7 +14,12 @@ type Features = [Double]
 class TrainedAlgorithm a where
   predictBy :: Num r => a -> Features -> r
 
-trainLinear :: TrainedAlgorithm a => FilePath -> IO a
+newtype LinearRegression = LinearRegression { linTheta :: Vector }
+
+instance TrainedAlgorithm LinearRegression where
+  predictBy lr features = undefined
+
+trainLinear :: FilePath -> IO LinearRegression
 trainLinear = undefined
 
 process :: String -> String
