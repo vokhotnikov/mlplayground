@@ -7,11 +7,14 @@ import Control.Monad ((>=>))
 
 import Lib
 
+withFileContents :: FilePath -> (String -> a) -> IO a
+withFileContents p a = withFile p ReadMode $ hGetContents >=> return . a
+
 main :: IO ()
 main = do
   args <- getArgs
   case args of
-    [fileName] -> (trainLinear >=> mainLoop) fileName
+    [fileName] -> withFileContents fileName trainLinear >>= mainLoop
     _ -> do
       name <- getProgName
       hPutStrLn stderr $ "usage " ++ name ++ "<trainSetFile.csv>"

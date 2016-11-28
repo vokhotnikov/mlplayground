@@ -19,7 +19,7 @@ newtype LinearRegression = LinearRegression { linTheta :: Vector }
 instance TrainedAlgorithm LinearRegression where
   predictBy lr features = undefined
 
-trainLinear :: FilePath -> IO LinearRegression
+trainLinear :: String -> LinearRegression
 trainLinear = undefined
 
 process :: String -> String
