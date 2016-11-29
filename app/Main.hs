@@ -7,7 +7,7 @@ import Control.Monad ((>=>))
 
 import Lib
 
-withFileContents :: FilePath -> (String -> a) -> IO a
+withFileContents :: FilePath -> (String -> r) -> IO r
 withFileContents p a = withFile p ReadMode $ hGetContents >=> return . a
 
 main :: IO ()
